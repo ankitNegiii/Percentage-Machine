@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>percentage</title>
+    <style>
+      body {
+        background-color: palevioletred;
+        margin: 0px;
+        padding: 0px;
+      }
+      .container {
+        position: relative;
+        background-color: blanchedalmond;
+        width: 500px;
+        height: 430px;
+        border-radius: 20px;
+        margin: 100px auto;
+      }
+      .right {
+        position: relative;
+        padding: 90px;
+        font-size: 30px;
+      }
+      .line {
+        width: 3px;
+        background-color: black;
+        height: 100px;
+        position: relative;
+        bottom: 100px;
+        right: 10px;
+      }
+      .left {
+        position: absolute;
+        top: 3px;
+        left: 202px;
+      }
+      input {
+        position: relative;
+        left: 60px;
+        padding: 10px;
+        margin: 5px;
+        border: none;
+      }
+      .btn {
+        padding: 8px;
+        margin: 10px;
+        position: relative;
+        left: 60px;
+        width: 180px;
+        background: linear-gradient(pink, white);
+        border-color: white;
+      }
+      #showData{
+          position: absolute;
+          left: 90px;
+          text-align: center;
+          background-color: cadetblue;
+          font-size: 20px;
+          color: white;
+          border-radius: 10px;
+          width: 300px;
+          bottom: 1px;
+
+      }
+      .fail{
+          color: red;
+      }
+      .pass{
+          color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="right">
+        Student <br />
+        Grade <br />
+        Calcy
+        <div class="line"></div>
+      </div>
+      <div class="left">
+        <h1>Web Programming</h1>
+        <input type="text" class="int" placeholder="Maths" id="maths" />
+        <input type="text" class="int" placeholder="computer" id="computer" />
+        <input type="text" class="int" placeholder="physic" id="physic" />
+        <input type="text" class="int" placeholder="chemistry" id="chemistry" />
+
+        <button class="btn" onclick="calcy()">Show percentage</button>
+      </div>
+      <div class="secondBox">
+          <p id="showData"></p>
+        </div>
+    </div>
+    <script>
+
+        //Student garade calculater
+
+        // each student have to enter respective subject marks
+        // 1 find total
+        //2 find percentage
+        //3 find grade
+        //4 check pass or fail
+        //5 combine all the show output
+      const calcy = () => {
+        let maths = document.getElementById("maths").value;
+        let computer = document.getElementById("computer").value;
+        let physic = document.getElementById("physic").value;
+        let chemistry = document.getElementById("chemistry").value;
+        let grade = ''
+        //using parse flote we can add the mumber othervise it will not add the number together
+        let totalGrade =
+          parseFloat(maths) +
+          parseFloat(computer) +
+          parseFloat(physic) +
+          parseFloat(chemistry);
+
+        alert('your total grade is '+ totalGrade);
+
+        let per = (totalGrade/400)*100
+        alert('yout percentage is '+ per)
+        if(per <= 100  && per >= 80){
+        grade = 'A'
+        }else if (per <=79 && per >= 60 ){
+            grade = 'B'
+        }else if (per <= 59 && per >=40){
+            grade = 'C'
+        }else if (per <= 39 && per >= 33){
+        grade = 'D'
+        }else{
+            grade = 'you are fail'
+        }
+        if (per >= 33){
+        let showData= document.getElementById('showData').innerHTML = `out of 400 your total is 
+           ${totalGrade} <br> and your percentage is ${per}%  <br> your grade is ${grade} grade.<br> <div class = 'pass'>YOU ARE PASS WELL DONE </div>`
+        }
+        else{ let showData= document.getElementById('showData').innerHTML = `out of 400 your total is 
+           ${totalGrade} <br> and your percentage is ${per}%  <br> your grade is ${grade} grade. <div class = fail> YOU ARE FAIL TRY NEXT YEAR </div>`  }
+      };
+    </script>
+  </body>
+</html>
